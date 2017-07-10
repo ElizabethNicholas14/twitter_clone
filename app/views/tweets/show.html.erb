@@ -1,0 +1,23 @@
+<h1>User Tweets</h1>
+<p id="notice"><%= notice %></p>
+
+<!-- tweet -->
+
+  <!-- @username -->
+  <p>
+    <strong>User: </strong><%= @tweet.user.username %>
+  </p>
+  <!-- message -->
+  <p>
+    <strong>Message: </strong><%= @tweet.message %>
+  </p>
+  <!-- tweet timestamp -->
+  <p>
+    <strong>Tweeted at: </strong><%= @tweet.created_at %>
+  </p>
+
+  <!-- button to edit the tweet -->
+  <%= link_to 'Edit Tweet', edit_tweet_path(@tweet), class:'btn btn-sm btn-default' %>
+
+  <!-- button to feed (index) -->
+  <%= link_to 'Back to Feed', tweets_path, class: 'btn btn-sm btn-warning' %>

@@ -1,0 +1,31 @@
+<h1>Flitter</h1>
+<h3>Profound thoughts. 140 characters at a time.</h3>
+
+<!-- button to make new tweets -->
+<%= link_to 'Create a Tweet', new_tweet_path, class:"btn btn-md btn-success" %>
+
+<!-- see all new tweets - come back and do this in a panel-->
+<table class="table table-striped table-hover">
+  <!-- head -->
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <!-- body -->
+  <tbody>
+    <!-- iterate through the tweets, each one in a new row -->
+    <% @tweets.each do |tweet|%>
+      <tr>
+        <td><%= tweet.message %></td>
+        <td><%= tweet.user.username %></td>
+        <td><%= link_to 'Show', tweet %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to'Delete', tweet, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <%end %>
+  </tbody>
+</table>
+
