@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tweet, only: [:edit, :show, :update]
+  before_action :set_tweet, only: [:edit, :show, :update, :destroy]
 
   def index
       @tweets = Tweet.all
@@ -40,6 +40,16 @@ class TweetsController < ApplicationController
 
   def show
     #set_tweet before action gets the @tweet we want to show
+  end
+
+  def destroy
+    #before actions gets the @tweet we want to destroy
+    #hulk smash tweet
+    @tweet.destroy
+    #render the index view
+    respond_to do |format|
+      format.html {redirect_to tweets_url, notice: "Tweet deleted successfully"}
+    end
   end
 
   private
