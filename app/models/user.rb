@@ -6,6 +6,12 @@ class User < ApplicationRecord
 
   has_many :tweets
 
+  #Validations
+  # require name and username
+  # username has to be unique
+  validates :name, presence: true
+  validates :username, presence: true, uniqueness: true
+
 end
 
 # == Schema Information
