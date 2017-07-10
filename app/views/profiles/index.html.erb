@@ -1,0 +1,5 @@
+<h1>All Flitter Users in Once Place!</h1>
+
+<% @users.each do |user| %>
+  <%= link_to user.username, profile_path(user) %><br>
+<% end %>

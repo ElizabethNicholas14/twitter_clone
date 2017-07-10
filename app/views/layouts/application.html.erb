@@ -9,6 +9,8 @@
   </head>
 
   <body>
+    <!-- logout button. we have to include method because HTTP will use "get" unless otherwise told. we're telling it to use the delete method -->
+    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:'btn btn-xs btn-danger' %>
     <%= yield %>
   </body>
 </html>
