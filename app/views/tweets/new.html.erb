@@ -1,2 +1,35 @@
-<h1>Tweets#new</h1>
-<p>Find me in app/views/tweets/new.html.erb</p>
+<h1>New Tweet</h1>
+<!-- form -->
+<%= form_for(@tweet) do |f| %>
+    <!-- show any errors -->
+      <% if @tweet.errors.any? %>
+        <div class="error_explanation">
+          <h2>
+            <%= pluralize(@tweet.errors.count, 'error') %> are present. Tweet cannot be saved
+          </h2>
+          <!-- iterate through errors -->
+            <ul>
+              <% tweet.errors.full_messages.each do |error|%>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+    <!-- actual form -->
+      <!-- message field -->
+        <div class="field form-group">
+          <%= f.label :message %><br>
+          <%= f.text_field :message, class: 'form-control' %>
+        </div>
+      <!-- user ID field -->
+        <div class="field form-group">
+          <%= f.hidden_field :user_id, value: current_user.id%><br>
+        </div>
+      <!-- submit button -->
+        <div class="actions form-group">
+          <%= f.submit class: 'btn btn-sm btn-success' %>
+        </div>
+<%end %>
+
+<!-- return to index button -->
+<%= link_to 'Back to Feed', tweets_path, class:'btn btn-sm btn-default' %>
