@@ -2,7 +2,15 @@
 <h1><%= @user.username %>'s Profile</h1>
 
 <!-- Show all their tweets -->
-
 <% @user.tweets.each do |tweet| %>
   <%= tweet.message %><br>
+<% end %>
+
+<!-- only show this stuff it it's not the current user's profile -->
+<% unless current_user.id == @user.id %>
+  <% if current_user.friends.include?(@user)#we're already following the person %>
+    <%= link_to "Unfollow", relationship_path(current_user.relationships.find_by_friend_id(@user)), method: :delete %>
+  <% else %>
+    <%= link_to "Follow", relationships_path(friend_id: @user.id), method: :post %>
+  <% end %>
 <% end %>

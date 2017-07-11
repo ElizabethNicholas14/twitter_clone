@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :tweets
 
+  resources :relationships
 
   devise_for :users
 
