@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   get 'profiles/:id' => 'profiles#show', as: :profile
 
-  resources :tweets
-
+  resources :tweets do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :relationships
 
   devise_for :users

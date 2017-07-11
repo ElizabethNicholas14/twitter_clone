@@ -19,6 +19,9 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
 
+  def liked?(tweet) #tells us if the user has already liked the tweet
+    tweet.likes.where(user_id: id).any?
+  end
 end
 
 # == Schema Information
