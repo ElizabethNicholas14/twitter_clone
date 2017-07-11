@@ -5,6 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tweets
+  #Person who follows (logged-in user)
+  has_many :relationships
+  has_many :friends, through: :relationships
+  #Person being followed (other users)
+  has_many :inverse_relationships, class_name: "Relationship"
+  has_many :inverse_friends, through: :inverse_relationships, source: :user
 
   #Validations
   # require name and username
