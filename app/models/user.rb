@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tweets
+  has_many :likes
   #Person who follows (logged-in user)
   has_many :relationships
   has_many :friends, through: :relationships
@@ -18,6 +19,9 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
 
+  def liked?(tweet) #tells us if the user has already liked the tweet
+    tweet.likes.where(user_id: id).any?
+  end
 end
 
 # == Schema Information
